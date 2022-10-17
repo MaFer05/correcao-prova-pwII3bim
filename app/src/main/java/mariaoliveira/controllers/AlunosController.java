@@ -41,6 +41,15 @@ public class AlunosController {
     public String update(Model model, @PathVariable int id) {
         Optional<Aluno> aluno = alunosRepo.findById(id);
         model.addAttribute("aluno", aluno.get());
-        return "update";
+        return "/alunos/update";
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public String saveupdate(@RequestParam("nome") String nome, @RequestParam("idade") int idade, @RequestParam("id") int id) {
+        Optional<Aluno> aluno = alunosRepo.findById(id);
+        aluno.get().setNome(nome);
+        aluno.get().setIdade(idade);
+        alunosRepo.save(aluno.get());
+        return "redirect:/alunos/list";
     }
 }
