@@ -29,10 +29,11 @@ public class AlunosController {
         return "insert";
     }
     @RequestMapping(value = "insert", method = RequestMethod.POST)
-    public String insert(@RequestParam("nome") String nome, @RequestParam("idade") int idade) {
+    public String insert(@RequestParam("nome") String nome, @RequestParam("idade") int idade, @RequestParam("curso") String curso) {
         Aluno aluno = new Aluno();
         aluno.setNome(nome);
         aluno.setIdade(idade);
+        aluno.setCurso(curso);
         alunosRepo.save(aluno);
         return "redirect:/alunos/list";
     }
@@ -45,10 +46,11 @@ public class AlunosController {
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public String saveupdate(@RequestParam("nome") String nome, @RequestParam("idade") int idade, @RequestParam("id") int id) {
+    public String saveupdate(@RequestParam("nome") String nome, @RequestParam("idade") int idade, @RequestParam("id") int id, @RequestParam("curso") String curso) {
         Optional<Aluno> aluno = alunosRepo.findById(id);
         aluno.get().setNome(nome);
         aluno.get().setIdade(idade);
+        aluno.get().setCurso(curso);
         alunosRepo.save(aluno.get());
         return "redirect:/alunos/list";
     }
@@ -64,6 +66,5 @@ public class AlunosController {
     public String saveDelete(@RequestParam("id") int id) {
         alunosRepo.deleteById(id);
         return "redirect:/alunos/list";
-
     }
 }
