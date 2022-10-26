@@ -24,7 +24,7 @@
                     <tr>
                         <td>${p.id}</td>
                         <td>${p.nome}</td>
-                        <td>${p.curso}</td>
+                        <td>${p.componente}</td>
                         <td>
                             <a href="/professores/update/${p.id}">Editar</a> | 
                             <a href="/professores/delete/${p.id}">Remover</a>
